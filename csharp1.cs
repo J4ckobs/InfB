@@ -1,59 +1,73 @@
 using System;
+using System.Globalization;
 
 namespace MyApp // Note: actual namespace depends on the project name.
 {
     internal class Program
     {
-
-        int funkcja1(int a, string b, char c, int d)
+        //C.) sprawdza czy podane zmienne są sobie równe nie zależnie od wiellkości liter
+        static bool isEqual(string a, string b)
         {
-            return 0;
+            if (a.ToLower() == b.ToLower()) return true;
+            else return false;
+        }
+        //E
+        static int ran(int a)
+        {
+            Random r = new Random();
+            return r.Next(a);
+        }
+        static string lotto(int amount, int range)
+        {
+            string nums = "";
+            for (int i = 0; i < amount; i++) nums += " " + ran(range);
+            return nums;
+        }
+        //F
+        static double poleWalca(int r, int h)
+        {
+            if (h <= 0 || r <= 0)
+                return double.NaN;
+            else
+                return 2 * (Math.PI * Math.Pow(r, 2)) + (2 * Math.PI * r * h); // 2* Pp + Pb = Pc
         }
 
-        double funkcja2(double a, double b)
+        static double vWalec(int r, int h)
         {
-            return 0;
+            if (h <= 0 || r <= 0)
+                return double.NaN;
+            else
+                return h * Math.PI * Math.Pow(r, 2);
         }
-
-        bool funkcja3(string a, string b)
+        //H
+        static double Solution(double a, double b, double c) // Fukcja zwracająca jedno miejsce zerowe funkcji
         {
-            return true;
-        }
-
-        string funkcja4(string a, string b)
-        {
-            return "";
-        }
-        //G / ?F
-        double poleKola(int r)
-        {
-            return Math.PI * Math.Pow(r,2);
-        }
-
-        double poleWalca(int r, int h)
-        {
-            return h * poleKola(r);
-        }
-
-        double CountSolution(double a, double b , double c)
-        {
-            double sDelta = Math.Sqrt(Math.Pow(b, 2) - 4*a*c);
-            if (sDelta <= 0)
+            double sDelta = Math.Sqrt(Math.Pow(b, 2) - 4 * a * c);
+            if (sDelta < 0)
             {
                 return double.NaN;
             }
 
             return (b + sDelta) / (2 * a);
         }
-
-        int sum(int ranm , int ranx, int div)
+        //I
+        static int sumSeven(int a)
         {
-            return div;
+            if (a == 0) return 0;
+            else
+            {
+                if (a % 7 != 0) return sumSeven(a - 1);
+                else return a + sumSeven(a - 7);
+            }
         }
 
         static void Main(string[] args)
         {
-            sum();
+            Console.WriteLine(isEqual("ptaK", "PTAk")); // B.)
+            Console.WriteLine("Liczby losowanie lotto:"+lotto(5, 50)); // E.)
+            Console.WriteLine("Pole walca: wynosi: " + vWalec(5, 10) + "\nObjetosc walca wynosi: " + poleWalca(5, 10)); // F
+            Console.WriteLine("Jedno z miejsc zerowych f-cji: " + Solution(2, 6, 1)); // H.)
+            Console.WriteLine("Suma liczb podzielnych przez 7 dla zakresu (1 - 40): " + sumSeven(40)); //I.)
         }
     }
 }
