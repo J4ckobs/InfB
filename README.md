@@ -1,6 +1,2 @@
-# TEST
-d
-## ETSET
-d
-### TEST
-d
+#  Project nie dokończony
+Projekt nie funkcjonuje poprawnie
